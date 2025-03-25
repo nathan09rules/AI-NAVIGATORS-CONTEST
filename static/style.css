@@ -1,0 +1,112 @@
+html {
+    scroll-behavior: smooth;
+    background-color: #FAEDCA;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+.text{
+    color: #234E70;
+}
+
+.inputed {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.border {
+    position:fixed;
+    top:0;
+    left: 0;;
+    width: 100vw;
+    height: 100vh;
+    border:5px solid black;
+    box-sizing: border-box;
+    pointer-events: none
+}
+
+.human_body{
+    position: absolute;
+    top:50px;
+    right: 10px;
+    scale: 1;
+}
+
+#info{
+    display: inline-block;
+    white-space: pre;
+    position: relative;
+    left:20px;
+}
+.shader, .shader_o {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: clip-path 0.3s ease-in-out;
+}
+
+.shader {
+    background: rgba(0,0,0,1);
+    clip-path: circle(10px at 500vw 500vh); /* Adjusted inside the viewport */
+}
+
+.shader_o {
+    background: rgba(255,0,0,0.5);
+    clip-path: circle(10px at 500vw 500vh); /* Adjusted inside the viewport */
+}
+
+
+.page{
+    transition: transform 0.8s ease-in-out;
+}
+
+
+area{
+    pointer-events: none;
+}
+
+map {
+    pointer-events: none;
+}
+
+h5{
+    position: absolute;
+   left: 50%;
+   bottom: 10px;
+   transform: translate(-50%);
+}
+
+a{
+    color: #7A9BDF;
+    z-index: 10;
+    display: inline-block;
+    transition: transform 0.2s ease-in-out, font-size 0.2s ease-in-out;
+}
+
+a:hover{
+    color: #234E70;
+    transform: scale(1.2);
+}
+
+h3{
+    padding-right: 30%;
+    color: black;
+}
+
+.hidden {
+    display: none;
+}
+
+.move_up{
+    transform: translateY(-50px);
+}
+
+#link{
+    position: relative;
+    left: 20px;
+}

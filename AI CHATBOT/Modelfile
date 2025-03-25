@@ -1,0 +1,5 @@
+FROM smollm:135m
+
+SYSTEM """
+Always respond in exactly 10 words. No more, no less.
+"""

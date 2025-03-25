@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 1</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .sidebar {
+            width: 250px;
+            background: #1a1a1a;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar h2 {
+            margin-bottom: 20px;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background 0.3s;
+        }
+        .sidebar a:hover {
+            background: #444;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            position: relative;
+        }
+        .header {
+            width: 100%;
+            height: 70px;
+            background: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .main-content {
+            margin-top: 80px;
+        }
+
+        li{
+            margin-top: 20px;
+            scale: 120%;
+            margin-left: 120px;
+        }
+
+        p{
+            display: flexbox;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <a href="{{ url_for('index')}}">Home</a>
+        <a href="{{ url_for('find_symptoms')}}">Find Symptoms</a>
+        <a href="{{ url_for('template')}}">Template</a>
+        <a href="{{ url_for('chatbot')}}">chat</a>
+        <a href="{{ url_for('suma')}}">news</a>
+    </div>
+
+    <div class="content">
+        <h1>Recent Disease Outbreak News</h1>
+        <ul>
+            <li>
+                <a href="https://www.theguardian.com/us-news/2025/mar/24/vaccine-disinformation-trump-measles-covid" target="_blank">
+                    ⚠️ Measles Outbreak in Texas
+                </a>
+                <p>Rising vaccine skepticism has caused a deadly measles outbreak in Texas, with multiple fatalities.</p>
+            </li>
+            <li>
+                <a href="https://www.thescottishsun.co.uk/health/14536528/tuberculosis-deadly-infection-disturbing-wake-up-call-children/" target="_blank">
+                    📢 TB Cases Rise in Europe
+                </a>
+                <p>TB cases have increased by 10%, mainly affecting children, due to disrupted healthcare services.</p>
+            </li>
+            <li>
+                <a href="https://www.michigansthumb.com/news/article/bird-flu-michigan-backyard-flocks-20237989.php" target="_blank">
+                    🦠 Bird Flu in Michigan
+                </a>
+                <p>A new bird flu case has been confirmed in a backyard flock, raising concerns over poultry safety.</p>
+            </li>
+            <li>
+                <a href="https://www.who.int/emergencies/disease-outbreak-news/item" target="_blank">
+                    🌍 MERS Cases in Saudi Arabia
+                </a>
+                <p>The WHO has reported new cases of MERS-CoV, a severe respiratory disease, in Saudi Arabia.</p>
+            </li>
+            <li>
+                <a href="https://www.cdc.gov/outbreaks/index.html" target="_blank">
+                    🚨 U.S. Outbreaks (CDC)
+                </a>
+                <p>Recent infections in the U.S. include Salmonella linked to geckos and Listeria in food products.</p>
+            </li>
+            <li>
+                <a href="https://www.bbc.com/news/health-67028623" target="_blank">
+                    🏥 New COVID-19 Variant Spreading
+                </a>
+                <p>A new COVID-19 variant is spreading rapidly, prompting health experts to recommend updated boosters.</p>
+            </li>
+            <li>
+                <a href="https://www.nytimes.com/2025/03/20/health/malaria-africa-outbreak.html" target="_blank">
+                    🦟 Malaria Cases Surge in Africa
+                </a>
+                <p>Climate change and drug resistance have caused a major surge in malaria cases across sub-Saharan Africa.</p>
+            </li>
+            <li>
+                <a href="https://www.science.org/content/article/ebola-virus-reemerges-drc" target="_blank">
+                    ⚕️ Ebola Virus Reemerges in the DRC
+                </a>
+                <p>Health officials confirm new Ebola cases in the Democratic Republic of Congo, sparking urgent response efforts.</p>
+            </li>
+            <li>
+                <a href="https://www.reuters.com/business/healthcare-pharmaceuticals/h5n1-bird-flu-outbreak-global-impact-2025-03-22/" target="_blank">
+                    🌎 Global Impact of H5N1 Bird Flu
+                </a>
+                <p>The ongoing H5N1 bird flu outbreak has disrupted food supply chains and infected both animals and humans.</p>
+            </li>
+            <li>
+                <a href="https://www.cnn.com/2025/03/23/health/hantavirus-us-outbreak/index.html" target="_blank">
+                    🏕️ Hantavirus Cases Detected in the U.S.
+                </a>
+                <p>Several cases of hantavirus, a disease spread by rodents, have been reported in the southwestern U.S.</p>
+            </li>
+        </ul>
+            <script src="/static/script.js"></script>            
+    </div>
+</body>
+</html>

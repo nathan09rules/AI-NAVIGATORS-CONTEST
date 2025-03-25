@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 1</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .sidebar {
+            width: 250px;
+            background: #1a1a1a;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar h2 {
+            margin-bottom: 20px;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background 0.3s;
+        }
+        .sidebar a:hover {
+            background: #444;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        #risk {
+            position: absolute;
+            top: 200px;
+            left: 800px;
+            width: 200px; /* Made it wider */
+            height: 150px;
+            border-radius: 10px;
+            background-color: gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #risk:hover {
+            position: absolute;
+            top: 275px;
+            left: 775px;
+            width: 250px; /* Made it wider */
+            height: 200px;
+            border-radius: 10px;
+            background-color: gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #risk-text {
+            position: absolute;
+            top: 350px; /* Below the risk box */
+            left: 1110px;
+            transform: translateX(-50%);
+            width: 700px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .l0 {
+            background-color: #4CAF50 !important;
+            color: #FFFFFF;
+        }
+
+        .l1 {
+            background-color: #CDDC39 !important;
+            color: #212121;
+        }
+
+        .l2 {
+            background-color: #FF9800 !important;
+            color: #212121;
+        }
+
+        .l3 {
+            background-color: #F44336 !important;
+            color: #FFFFFF;
+        }
+
+        .l4 {
+            background-color: #9C27B0 !important;
+            color: #FFFFFF;
+        }
+
+        .l5 {
+            background-color: #B71C1C !important;
+            color: #FFFFFF;
+        }
+
+        /* Symptoms input box */
+        #inputed {
+            width: 200px; /* Slightly smaller width */
+            height: 10px;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 18px; /* Softer curve */
+            border: 2px solid #007BFF;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        #inputed:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 5px rgba(0, 91, 187, 0.4);
+        }
+
+        /* Add button */
+        #add {
+            padding: 12px 25px; /* Smaller button */
+            border-radius: 10px; /* Softer curve */
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        #add:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Submit button */
+        #submit {
+            padding: 12px 28px;
+            border-radius: 10px; /* Balanced curve */
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        #submit:hover {
+            background-color: #1e7e34;
+            transform: scale(1.05);
+        }
+
+        #modern-textarea {
+            width: 450px; /* Small width */
+            height: 150px; /* Compact height */
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 12px; /* Rounded corners */
+            border: 2px solid #007BFF;
+            outline: none;
+            transition: all 0.2s ease;
+            resize: none; /* Disable resizing */
+            background: #f8f9fa;
+        }
+
+        #modern-textarea:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 8px rgba(0, 91, 187, 0.4);
+        }
+
+        .r {
+            width: 50%;
+            padding-left: 10px;
+            border-radius: 5px;
+            background-color: lightblue;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <a href="{{ url_for('index')}}">Home</a>
+        <a href="{{ url_for('find_symptoms')}}">Find Symptoms</a>
+        <a href="{{ url_for('template')}}">Template</a>
+        <a href="{{ url_for('chatbot')}}">Chat</a>
+        <a href="{{ url_for('suma')}}">News</a>
+    </div>
+    <div class="content">
+        <hr style="height: 10px;">
+
+        <div id="google_translate_element"></div>
+        <select id="language">
+            <option value="en">English</option>
+            <option value="fr">French</option>
+        </select>
+        
+        <h1 id="heading">Alpha 1.2</h1>
+
+        <form id="form">
+            <div id="input_container">
+                <input type="text" id="inputed" class="inputed" placeholder="Symptoms" list="symptoms" required>
+                <datalist id="symptoms"></datalist>
+            </div>
+            <button type="button" id="add">Add</button>
+
+            <img class="human_body" src="static/Printable-Human-Body-Outline-Template-removebg-preview.png">
+            <div class="shader"></div>
+            
+            <button type="submit" id="submit">Submit</button>
+        </form>
+        <br>
+        
+        <textarea id="modern-textarea" placeholder="Enter details..."></textarea>
+
+        <h1>Possible Diseases</h1>
+
+        <h2 id="result" class="r">Result</h2>
+
+        <br>
+
+        <h1>List of Precautions</h1>
+        <h2 id="p1" class="r">Precautions</h2>
+        <br>
+        <h2 id="p2" class="r">Precautions</h2>
+        <br>
+        <h2 id="p3" class="r">Precautions</h2>
+        <br>
+        <h2 id="p4" class="r">Precautions</h2>
+        <br>
+
+        <h1 id="risk">RISK</h1>
+        <h3 id="risk-text">Monitor symptoms</h3>
+        
+        <script src="/static/script.js"></script>
+
+        <h5 id="moto">Our goal is to create an easy-to-read, simple, and accessible site.<br> Health should be accessible to anyone and everyone regardless of their background.</h5>
+    </div>
+</body>
+</html>
