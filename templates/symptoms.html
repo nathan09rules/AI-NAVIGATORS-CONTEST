@@ -26,18 +26,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: fixed; /* Keeps it fixed while scrolling */
+            position: fixed;
             top: 0;
             left: 0;
-            height: 100vh; /* Full height */
+            height: 100vh;
         }
-
-        /* Content should have enough left margin to not overlap with the sidebar */
         .content {
             flex: 1;
             padding: 20px;
-            margin-left: 250px; /* Makes space for the sidebar */
-            background: white; /* Keeps the background white */
+            margin-left: 250px;
+            background: white;
         }
         .sidebar h2 {
             margin-bottom: 20px;
@@ -56,7 +54,6 @@
         .sidebar a:hover {
             background: #444;
         }
-
         .header {
             width: 100%;
             height: 70px;
@@ -68,26 +65,23 @@
         .main-content {
             margin-top: 80px;
         }
-
         #page1 {
             position: absolute;
             top: 40%;
-            left: calc(50%); /* Centered but moved 250px left */
+            left: calc(50%);
             transform: translate(-50%, -50%);
             width: 400px;
-            background: rgba(255, 255, 255, 0.9); /* Slight transparency */
+            background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
             text-align: center;
             font-family: Arial, sans-serif;
         }
-
         #page1 h2 {
             margin-bottom: 10px;
             color: #333;
         }
-
         #page1 label {
             font-size: 18px;
             font-weight: bold;
@@ -95,7 +89,6 @@
             display: block;
             margin-bottom: 5px;
         }
-
         #page1 input, 
         #page1 select {
             width: 100%;
@@ -105,7 +98,6 @@
             border-radius: 6px;
             font-size: 16px;
         }
-
         #page1 button {
             width: 100%;
             padding: 12px;
@@ -117,122 +109,110 @@
             cursor: pointer;
             transition: 0.3s;
         }
-
         #page1 button:hover {
             background: #0056b3;
         }
-
         #symptom_data h1{
             margin-top: 50px;
+        }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <h2>Menu</h2>
-        <a href="{{ url_for('index')}}">Home</a>
-        <a href="{{ url_for('find_symptoms')}}">Find Symptoms</a>
-        <a href="{{ url_for('template')}}">Template</a>
-        <a href="{{ url_for('chatbot')}}">chat</a>
-        <a href="{{ url_for('suma')}}">news</a>
+        <a href="#">Home</a>
+        <a href="#">Find Symptoms</a>
+        <a href="#">Template</a>
+        <a href="#">Chat</a>
+        <a href="#">News</a>
     </div>
     <div class="content">
-
-    <br><br>
-    
-    <form id="page1" class="page">
-        <h2>Enter Your Details</h2>
-        <label>Age:</label>
-        <input type="number" id="age" required>
-        
-        <label>Gender:</label>
-        <select id="gender" required>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-        </select>
-        
-        <button type="submit"><h2>NEXT</h2></button>
-    </form>
-
-    <div id="page2" class="page hidden">
-        <h1>click on the body</h1>
-        <h1 id="body_part">body part</h1>
-        <h2 id="info">info</h2>
-
-
-        <img class="human_body" src="static\Printable-Human-Body-Outline-Template-removebg-preview.png" usemap="#bodymap" onclick="body_clicked(event , 'general')">
-
-        <map name="bodymap">
-            <area shape="rect" coords="149,60,202,116" href="#" onclick="body_clicked(event , 'face_and_neck')">
-            <area shape="rect" coords="123,15,213,95" href="#" onclick="body_clicked(event , 'head')">
-            <area shape="rect" coords="101,339,243,384" href="#" onclick="body_clicked(event , 'pelvis')">
-            <area shape="rect" coords="118,265,240,350" href="#" onclick="body_clicked(event , 'intestines')">
-            <area shape="rect" coords="168,238,236,299" href="#" onclick="body_clicked(event , 'stomach')">
-            <area shape="rect" coords="112,117,248,365" href="#" onclick="body_clicked(event , 'chest')">
-            <area shape="rect" coords="10,131,343,331" href="#" onclick="body_clicked(event , 'arms')">
-            <area shape="rect" coords="92,358,261,648" href="#" onclick="body_clicked(event , 'legs')">
-            <area shape="rect" coords="18,317,346,400" href="#" onclick="body_clicked(event , 'hands')">            </map>
-        
-        <div class="shader shader_o"></div>
-    </div>
-
-    <div id="symptom_data" style="position: absolute; top: 800px;">
-        <form id="search_symp">
-            <input type="text" id="s_symp" placeholder="search symptoms" list="symptoms" required >
-            <datalist id="symptoms"></datalist>
-            <button type="submit">submit</button>
+        <br><br>
+        <form id="page1" class="page">
+            <h2>Enter Your Details</h2>
+            <label>Age:</label>
+            <input type="number" id="age" required>
+            
+            <label>Gender:</label>
+            <select id="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            
+            <button type="submit"><h2>NEXT</h2></button>
         </form>
 
-        <h1>SYMPTOMS</h1>
-        
-        <h2>List of all symptoms and their descriptions</h2>
-        <h1 id="phlegm">Phlegm</h1>
-        <h3>
-            Phlegm is the <b>thick, sticky mucus</b> that your body makes, especially when you're sick. 
-            It comes from your <b>lungs and throat</b> and is usually <b>clear</b> but can turn <b>yellow, green, or brown</b> if you have an infection. 
-            Your body makes phlegm to <b>trap dust, germs, and other unwanted stuff</b>, helping to keep your lungs clean.
-        </h3>
-        
-        <h1 id="stomach_pain">Stomach Pain</h1>
-        <h3>
-            Stomach pain is <b>any discomfort or ache</b> felt in the belly area. It can be <b>mild or severe, sharp or dull</b>, and may come and go. 
-            Common causes include <b>indigestion, gas, infections, or cramps</b>. Sometimes, it happens after eating certain foods or when feeling stressed. 
-            While most stomach pain goes away on its own, <b>lasting or strong pain</b> could mean something more serious, like an <b>infection or organ problem</b>. 
-            If the pain is <b>very bad, doesn’t stop, or comes with vomiting or fever</b>, it’s best to see a doctor.
-        </h3>
-        
-        <h1 id="nausea">Nausea</h1>
-        <h3>
-            Nausea is the feeling that you might <b>throw up</b>, like your stomach is <b>upset or uneasy</b>. 
-            It can happen due to <b>spoiled food, motion sickness, infections, or stress</b>. 
-            Sometimes, nausea goes away on its own, but <b>drinking water, resting, or deep breathing</b> can help. 
-            If it lasts long or comes with <b>severe pain or dehydration</b>, see a doctor.
-        </h3>
-        
-        <h1 id="burning_micturition">Burning Micturition</h1>
-        <h3>
-            Burning micturition means feeling a <b>burning or painful sensation</b> while urinating. 
-            This can be due to a <b>urinary tract infection (UTI), dehydration, kidney stones, or irritation</b> from certain foods and drinks. 
-            Drinking <b>plenty of water</b> and maintaining <b>good hygiene</b> can help, but if the pain continues or comes with <b>fever, blood in urine, or frequent urges to urinate</b>, see a doctor.
-        </h3>
-        
-        <h1 id="diarrhoea">Diarrhoea</h1>
-        <h3>
-            Diarrhea is when you have <b>loose or watery stools</b> more often than usual. 
-            It can happen due to <b>infections, food poisoning, stress, or medical conditions</b>. 
-            Mild cases often go away on their own, but <b>drinking plenty of water</b> is important to prevent dehydration. 
-            If diarrhea lasts <b>more than a few days, has blood, or comes with severe pain or fever</b>, it’s best to see a doctor.
-        </h3>
-        
-        <h1 style="margin-top: 1000px;">THE END</h1>
-    </div>
+        <div id="page2" class="page hidden">
+            <h1>Click on the body</h1>
+            <h1 id="body_part">Body part</h1>
+            <h2 id="info">Info</h2>
 
-    
-            <script src="/static/script.js"></script>            
+            <img class="human_body" src="static/Printable-Human-Body-Outline-Template-removebg-preview.png" usemap="#bodymap" onclick="body_clicked(event , 'general')">
+
+            <map name="bodymap">
+                <area shape="rect" coords="149,60,202,116" href="#" onclick="body_clicked(event , 'face_and_neck')">
+                <area shape="rect" coords="123,15,213,95" href="#" onclick="body_clicked(event , 'head')">
+                <area shape="rect" coords="101,339,243,384" href="#" onclick="body_clicked(event , 'pelvis')">
+                <area shape="rect" coords="118,265,240,350" href="#" onclick="body_clicked(event , 'intestines')">
+                <area shape="rect" coords="168,238,236,299" href="#" onclick="body_clicked(event , 'stomach')">
+                <area shape="rect" coords="112,117,248,365" href="#" onclick="body_clicked(event , 'chest')">
+                <area shape="rect" coords="10,131,343,331" href="#" onclick="body_clicked(event , 'arms')">
+                <area shape="rect" coords="92,358,261,648" href="#" onclick="body_clicked(event , 'legs')">
+                <area shape="rect" coords="18,317,346,400" href="#" onclick="body_clicked(event , 'hands')">
+            </map>
+
+            <div class="shader shader_o"></div>
         </div>
+
+        <div id="symptom_data" style="position: absolute; top: 800px;">
+            <form id="search_symp">
+                <input type="text" id="s_symp" placeholder="Search symptoms" list="symptoms" required>
+                <datalist id="symptoms"></datalist>
+                <button type="submit">Submit</button>
+            </form>
+
+            <h1>SYMPTOMS</h1>
+
+            <h2>List of all symptoms and their descriptions</h2>
+            <h1 id="phlegm">Phlegm</h1>
+            <h3>Phlegm is the thick, sticky mucus...</h3>
+            <h1 id="stomach_pain">Stomach Pain</h1>
+            <h3>Stomach pain is any discomfort...</h3>
+            <h1 id="nausea">Nausea</h1>
+            <h3>Nausea is the feeling that you might...</h3>
+            <h1 id="burning_micturition">Burning Micturition</h1>
+            <h3>Burning micturition means feeling a burning or painful sensation...</h3>
+            <h1 id="diarrhoea">Diarrhoea</h1>
+            <h3>Diarrhea is when you have loose or watery stools...</h3>
+            <h1 style="margin-top: 1000px;">THE END</h1>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const page1 = document.getElementById('page1');
+                const page2 = document.getElementById('page2');
+                const form = document.getElementById('page1');
+
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const age = document.getElementById('age').value;
+                    const gender = document.getElementById('gender').value;
+
+                    if (age && gender) {
+                        page1.classList.add('hidden');
+                        page2.classList.remove('hidden');
+                    }
+                });
+            });
+
+            function body_clicked(event, part) {
+                document.getElementById('body_part').innerText = part;
+                document.getElementById('info').innerText = `You clicked on the ${part}. More info coming soon...`;
+            }
+        </script>
     </div>
-</div>
 </body>
 </html>
-
-

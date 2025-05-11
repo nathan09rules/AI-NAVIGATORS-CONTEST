@@ -60,22 +60,161 @@
         .main-content {
             margin-top: 80px;
         }
+        #page1 {
+            position: absolute;
+            top: 40%;
+            left: calc(50%); /* Centered but moved 250px left */
+            transform: translate(-50%, -50%);
+            width: 400px;
+            background: rgba(255, 255, 255, 0.9); /* Slight transparency */
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #page1 h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        #page1 label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #444;
+            display: block;
+            margin-bottom: 5px;
+        }
+        #page1 input, 
+        #page1 select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        #page1 button {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #page1 button:hover {
+            background: #0056b3;
+        }
+
+        #page2 {
+            position: absolute;
+            top: 40%;
+            left: calc(50%); 
+            transform: translate(-50%, -50%);
+            width: 400px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        #page2 h1 {
+            margin-bottom: 10px;
+        }
+
+        #symptom_data h1{
+            margin-top: 50px;
+        }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <h2>Menu</h2>
-        <a href="{{ url_for('index')}}">Home</a>
-        <a href="{{ url_for('find_symptoms')}}">Find Symptoms</a>
-        <a href="{{ url_for('template')}}">Template</a>
-        <a href="{{ url_for('chatbot')}}">chat</a>
+        <a href="home.html">Home</a>
+        <a href="find_symptoms.html">Find Symptoms</a>
+        <a href="template.html">Template</a>
+        <a href="chatbot.html">Chat</a>
     </div>
 
     <div class="content">
+        <!-- Page 1 content -->
+        <form id="page1">
+            <h2>Enter Your Details</h2>
+            <label>Age:</label>
+            <input type="number" id="age" required>
+            
+            <label>Gender:</label>
+            <select id="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            
+            <button type="submit"><h2>NEXT</h2></button>
+        </form>
 
-    </div>
-            <script src="/static/script.js"></script>            
+        <!-- Page 2 content -->
+        <div id="page2" class="page hidden">
+            <h1>Click on the body</h1>
+            <h1 id="body_part">Body Part</h1>
+            <h2 id="info">Info</h2>
+
+            <img class="human_body" src="static/Printable-Human-Body-Outline-Template-removebg-preview.png" usemap="#bodymap" onclick="body_clicked(event, 'general')">
+            <map name="bodymap">
+                <area shape="rect" coords="149,60,202,116" href="#" onclick="body_clicked(event , 'face_and_neck')">
+                <area shape="rect" coords="123,15,213,95" href="#" onclick="body_clicked(event , 'head')">
+                <area shape="rect" coords="101,339,243,384" href="#" onclick="body_clicked(event , 'pelvis')">
+                <area shape="rect" coords="118,265,240,350" href="#" onclick="body_clicked(event , 'intestines')">
+                <area shape="rect" coords="168,238,236,299" href="#" onclick="body_clicked(event , 'stomach')">
+                <area shape="rect" coords="112,117,248,365" href="#" onclick="body_clicked(event , 'chest')">
+                <area shape="rect" coords="10,131,343,331" href="#" onclick="body_clicked(event , 'arms')">
+                <area shape="rect" coords="92,358,261,648" href="#" onclick="body_clicked(event , 'legs')">
+                <area shape="rect" coords="18,317,346,400" href="#" onclick="body_clicked(event , 'hands')">
+            </map>
+        </div>
+
+        <!-- Symptom Data Section -->
+        <div id="symptom_data">
+            <form id="search_symp">
+                <input type="text" id="s_symp" placeholder="Search symptoms" list="symptoms" required>
+                <datalist id="symptoms"></datalist>
+                <button type="submit">Submit</button>
+            </form>
+
+            <h1>SYMPTOMS</h1>
+            
+            <h2>List of all symptoms and their descriptions</h2>
+            <h1 id="phlegm">Phlegm</h1>
+            <h3>
+                Phlegm is the <b>thick, sticky mucus</b> that your body makes, especially when you're sick. 
+                It comes from your <b>lungs and throat</b> and is usually <b>clear</b> but can turn <b>yellow, green, or brown</b> if you have an infection.
+            </h3>
+            <h1 id="stomach_pain">Stomach Pain</h1>
+            <h3>
+                Stomach pain is <b>any discomfort or ache</b> felt in the belly area. It can be <b>mild or severe</b>, and may come and go. 
+                Common causes include <b>indigestion, gas, infections, or cramps</b>.
+            </h3>
+            <h1 id="nausea">Nausea</h1>
+            <h3>
+                Nausea is the feeling that you might <b>throw up</b>, like your stomach is <b>upset or uneasy</b>. 
+                It can happen due to <b>spoiled food, motion sickness, infections, or stress</b>.
+            </h3>
+            <h1 id="burning_micturition">Burning Micturition</h1>
+            <h3>
+                Burning micturition means feeling a <b>burning or painful sensation</b> while urinating.
+            </h3>
+            <h1 id="diarrhoea">Diarrhoea</h1>
+            <h3>
+                Diarrhea is when you have <b>loose or watery stools</b> more often than usual.
+            </h3>
+
+            <h1>THE END</h1>
         </div>
     </div>
+
+    <script src="static/script.js"></script>
 </body>
 </html>
